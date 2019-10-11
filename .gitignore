@@ -1,0 +1,6 @@
+virtual/
+__pycache__
+.vscode
+*.pyc
+.env
+sqlite3
