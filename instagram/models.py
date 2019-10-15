@@ -1,6 +1,11 @@
 from django.db import models
 
 # Create your models here.
+
+class Profile(models.Model):
+    photo = models.ImageField(blank=True)
+    bio = models.TextField()
+
 class Image(models.Model):
     image = models.ImageField()
     name = models.CharField(max_length = 100)
@@ -9,6 +14,3 @@ class Image(models.Model):
     like_count = models.IntegerField(default=0)
     comments = models.TextField()
 
-class Profile(models.Model):
-    photo = models.ManyToManyField(Photo, blank=True)
-    bio = models.TextField()
