@@ -5,3 +5,7 @@ from django.http  import HttpResponse
 def instagram(request):
     # return HttpResponse('Instagram App')
     return render(request,'instagram.html')
+
+def image(request):
+    # image = 
+    return render(request, instas/image.html)
