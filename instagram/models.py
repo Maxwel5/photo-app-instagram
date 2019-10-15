@@ -14,3 +14,7 @@ class Image(models.Model):
     like_count = models.IntegerField(default=0)
     comments = models.TextField()
 
+class InstagramReceivers(models.Model):
+    name = models.CharField(max_length = 20)
+    email = models.EmailField()
+
