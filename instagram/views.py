@@ -3,6 +3,7 @@ from django.http  import HttpResponse,HttpResponseRedirect
 from .models import Image, Profile,Instagram
 from .forms import InstagramForm
 from .email import send_welcome_email
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def image(request):
@@ -20,7 +21,8 @@ def image(request):
         form = InstagramForm()
     return render(request, 'instas/image.html', {"images":images,"letterForm":form})
 
-def news_today(request):
+@login_required(login_url='/accounts/login/')
+def image(request):
     if request.method == 'POST':
         form = InstagramForm(request.POST)
         if form.is_valid():
