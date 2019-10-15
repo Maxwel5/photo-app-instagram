@@ -8,3 +8,7 @@ class Image(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     like_count = models.IntegerField(default=0)
     comments = models.TextField()
+
+class Profile(models.Model):
+    photo = models.ManyToManyField(Photo, blank=True)
+    bio = models.TextField()
