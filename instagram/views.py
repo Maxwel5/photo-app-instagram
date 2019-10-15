@@ -3,4 +3,4 @@ from django.http  import HttpResponse
 
 # Create your views here.
 def instagram(request):
-    return HttpResponse('Instagram app')
+    return HttpResponse('Instagram App')
