@@ -33,6 +33,9 @@ class Image(models.Model):
     def __str__(self):
         return self.name
 
+    def save_image(self):
+        self.save()
+
 class Instagram(models.Model):
     name = models.CharField(max_length = 20)
     email = models.EmailField()

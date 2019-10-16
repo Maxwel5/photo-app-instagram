@@ -45,3 +45,20 @@ class ImageTestClass(TestCase):
         self.new_image.save()
 
         self.new_image.instagram.add(self.new_instagram)
+
+    # Testing Save Method
+    def test_save_method(self):
+        self.save_image()
+        images = Image.objects.all()
+        self.assertTrue(len(profiles) > 0)
+
+    # Testing Update Method
+    # def test_update_method(self):
+    #     self.update_profile()
+    #     self.assertTrue(len(profiles) > 0)
+
+
+    # Testing Delete Method
+    # def test_delete_method(self):
+    #     self.delete_profile()
+    #     self.assertTrue(len(profiles) > 0)
