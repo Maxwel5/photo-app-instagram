@@ -22,7 +22,7 @@ class Profile(models.Model):
         ordering = ['photo', 'bio']
 
 class Image(models.Model):
-    image = models.ImageField()
+    image_image = models.ImageField(upload_to='images/')
     name = models.CharField(max_length = 100)
     caption = models.CharField(max_length = 150)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
