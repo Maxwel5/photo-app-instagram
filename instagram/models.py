@@ -11,6 +11,12 @@ class Profile(models.Model):
     def save_profile(self):
         self.save()
 
+    def update_profile(self):
+        self.update()
+
+    def delete_profile(self):
+        self.delete()
+
     class Meta:
         ordering = ['photo', 'bio']
 

@@ -14,6 +14,17 @@ class ProfileTestClass(TestCase):
 
     # Testing Save Method
     def test_save_method(self):
-        self.hos.save_profile()
+        self.save_profile()
         profiles = Profile.objects.all()
+        self.assertTrue(len(profiles) > 0)
+
+    # Testing Update Method
+    def test_update_method(self):
+        self.update_profile()
+        self.assertTrue(len(profiles) > 0)
+
+
+    # Testing Delete Method
+    def test_delete_method(self):
+        self.delete_profile()
         self.assertTrue(len(profiles) > 0)
