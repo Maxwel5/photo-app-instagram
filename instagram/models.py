@@ -47,10 +47,6 @@ class Image(models.Model):
         instagram.objects.all().delete()
         Image.objects.all().delete()
 
-    def test_get_image(self):
-        image = Image.image()
-        self.assertTrue(len(image)>0)
-
 class Instagram(models.Model):
     name = models.CharField(max_length = 20)
     email = models.EmailField()
