@@ -11,16 +11,16 @@ from django.contrib.auth.decorators import login_required
 @login_required(login_url='/accounts/login/')
 def image(request):
     images = Image.objects.all()
-    if request.method == 'POST':
-        form = InstagramForm(request.POST)
-        if form.is_valid():
-            name = form.cleaned_data['your_name']
-            email = form.cleaned_data['email']
+    # if request.method == 'POST':
+    #     form = InstagramForm(request.POST)
+    #     if form.is_valid():
+    #         name = form.cleaned_data['your_name']
+    #         email = form.cleaned_data['email']
 
-            recipient = Instagram(name = name,email =email)
-            recipient.save()
-            send_welcome_email(name,email)
+    #         recipient = Instagram(name = name,email =email)
+    #         recipient.save()
+    #         send_welcome_email(name,email)
 
-            HttpResponseRedirect('image')
+    #         HttpResponseRedirect('image')
             #.................
-    return render(request, 'instas/image.html', {"images":images,"form":form})
+    return render(request, 'instas/image.html', {"images":images})

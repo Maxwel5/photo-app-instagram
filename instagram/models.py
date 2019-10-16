@@ -1,10 +1,12 @@
 from django.db import models
 
 # Create your models here.
-
 class Profile(models.Model):
     photo = models.ImageField(blank=True)
     bio = models.TextField()
+
+    def __str__(self):
+        return self.bio
 
 class Image(models.Model):
     image = models.ImageField()
