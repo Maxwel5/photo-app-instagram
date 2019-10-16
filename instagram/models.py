@@ -47,6 +47,11 @@ class Image(models.Model):
         instagram.objects.all().delete()
         Image.objects.all().delete()
 
+    @classmethod
+    def search_by_name(search_term):
+        instagram = cls.objects.filter(name__icontains=search_term)
+        return instagram
+
 class Instagram(models.Model):
     name = models.CharField(max_length = 20)
     email = models.EmailField()

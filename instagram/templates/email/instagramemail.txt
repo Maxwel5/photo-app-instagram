@@ -1,0 +1,3 @@
+Hi {{name}}
+
+Pleasure for using the most fantastic application that unites people globally. Here you will be free to mingle and socialize peaceful.
