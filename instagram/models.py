@@ -36,6 +36,9 @@ class Image(models.Model):
     def save_image(self):
         self.save()
 
+    def update_caption_image(self):
+        self.update_caption()
+
 class Instagram(models.Model):
     name = models.CharField(max_length = 20)
     email = models.EmailField()

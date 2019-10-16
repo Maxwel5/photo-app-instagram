@@ -52,10 +52,10 @@ class ImageTestClass(TestCase):
         images = Image.objects.all()
         self.assertTrue(len(profiles) > 0)
 
-    # Testing Update Method
-    # def test_update_method(self):
-    #     self.update_profile()
-    #     self.assertTrue(len(profiles) > 0)
+    # Testing Update_caption Method
+    def test_update_method(self):
+        self.update_image()
+        self.assertTrue(len(images) > 0)
 
 
     # Testing Delete Method
