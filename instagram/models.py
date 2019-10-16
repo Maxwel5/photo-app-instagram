@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 class Profile(models.Model):
@@ -27,7 +28,7 @@ class Image(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     like_count = models.IntegerField(default=0)
     comments = models.TextField()
-    pub_date = models.DateTimeField(auto_now_add=True)
+    pub_date = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.name
