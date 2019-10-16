@@ -39,6 +39,9 @@ class Image(models.Model):
     def update_caption_image(self):
         self.update_caption()
 
+    def delete_image(self):
+        self.delete()
+
 class Instagram(models.Model):
     name = models.CharField(max_length = 20)
     email = models.EmailField()

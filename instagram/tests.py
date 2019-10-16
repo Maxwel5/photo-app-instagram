@@ -53,12 +53,11 @@ class ImageTestClass(TestCase):
         self.assertTrue(len(profiles) > 0)
 
     # Testing Update_caption Method
-    def test_update_method(self):
-        self.update_image()
+    def test_update_caption_method(self):
+        self.update_caption_image()
         self.assertTrue(len(images) > 0)
 
-
     # Testing Delete Method
-    # def test_delete_method(self):
-    #     self.delete_profile()
-    #     self.assertTrue(len(profiles) > 0)
+    def test_delete_method(self):
+        self.delete_image()
+        self.assertTrue(len(images) > 0)
