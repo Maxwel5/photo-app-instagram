@@ -8,6 +8,9 @@ class Profile(models.Model):
     def __str__(self):
         return self.bio
 
+    class Meta:
+        ordering = ['photo', 'bio']
+
 class Image(models.Model):
     image = models.ImageField()
     name = models.CharField(max_length = 100)
