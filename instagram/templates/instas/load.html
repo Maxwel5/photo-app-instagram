@@ -1,0 +1,16 @@
+{%extends 'instas/base.html'%}
+{% load bootstrap4 %}
+
+{% block content %}
+
+{{block.super}}
+{% for instagram_item in instagram %}
+
+  <div class="row">
+    <!--Display instagram Image images  -->
+    <div class="col-md-6">
+      <img src="{{instagram_item.image_image.url}}" class="img-responsive" alt="Image">
+    </div>
+
+  </div>
+{% endblock %}
