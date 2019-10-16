@@ -42,6 +42,11 @@ class Image(models.Model):
     def delete_image(self):
         self.delete()
 
+    def tearDown(self):
+        Profile.objects.all().delete()
+        instagram.objects.all().delete()
+        Image.objects.all().delete()
+
 class Instagram(models.Model):
     name = models.CharField(max_length = 20)
     email = models.EmailField()
