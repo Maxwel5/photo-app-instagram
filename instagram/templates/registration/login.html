@@ -4,7 +4,7 @@
 <div class="container">
   <div class="row">
     <!-- Empty div -->
-    <div class="col-md-3"></div>
+    <div class="col-md-3"></div> 
     <div class="col-md-6">
       {% if form.errors %}
         <p> Password or Username is incorrect </p>
@@ -16,7 +16,7 @@
         </div>
         <div class="panel-body">
 
-          <form  action="/accounts/login/" method="post">
+          <form  action="" method="POST">
             {% csrf_token %}
             {% bootstrap_form form%}
 

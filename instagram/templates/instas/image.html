@@ -2,16 +2,5 @@
 {% load bootstrap4 %}
 
 {% block content %}
-
-<div class="container">
-
-    <form action="{%url 'image'%}" method="post">
-        {%csrf_token%}
-
-        {% bootstrap_form letterForm layout='inline' %}
-        <input type="submit" value="Subscribe">
-    </form>
-
-</div>
 {{block.super}}
 {% endblock %}

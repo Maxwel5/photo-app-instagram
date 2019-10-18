@@ -51,7 +51,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'instagramapp.urls'
+ROOT_URLCONF = 'instagramapp.urls' 
 
 TEMPLATES = [
     {
@@ -138,5 +138,5 @@ EMAIL_PORT = config('EMAIL_PORT')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
-
-LOGIN_REDIRECT_URL = 'image'
+LOGIN_REDIRECT_URL = 'display-images'
+LOGIN_URL = 'login'

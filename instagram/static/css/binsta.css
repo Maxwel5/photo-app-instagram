@@ -1,3 +1,7 @@
 h1{
     color: blueviolet;
 }
+
+#navbar{
+    position: sticky;
+}

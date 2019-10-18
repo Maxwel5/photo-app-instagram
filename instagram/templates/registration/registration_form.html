@@ -1,7 +1,7 @@
 {%extends "registration/base.html"%} 
 {% load bootstrap4 %}
 {% block content %}
-<div class="container">
+<div class="container"> 
   <div class="row">
     <!-- Empty div -->
     <div class="col-md-3"></div>
@@ -16,7 +16,7 @@
         </div>
         <div class="panel-body">
 
-          <form  action="/accounts/register/" method="post">
+          <form  action="" method="POST">
             {% csrf_token %}
             {% bootstrap_form form %}
             <div class="form-group">
@@ -38,16 +38,3 @@
 </div>
 
 {% endblock %}
-We create a form that sends a post request to accounts/register which will process our form. We use the bootstrap package to load the form. Now we can start our server and navigate to http://127.0.0.1:8000/accounts/register/ (Links to an external site.) to view the registration page.
-
-Next we want to limit only an authenticated User to view a full article.
-
-news/views.py
-
-from django.contrib.auth.decorators import login_required.
-
-#.......
-
-@login_required(login_url='/accounts/login/')
-def article(request, article_id):
-#.......

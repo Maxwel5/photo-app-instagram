@@ -1,30 +1,29 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http  import HttpResponse,HttpResponseRedirect
 from .models import Image, Profile,Instagram
-from .forms import InstagramForm
+from .forms import UserRegisterForm
 from .email import send_welcome_email
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
-
-
-@login_required(login_url='/accounts/login/')
-def image(request):
-    images = Image.objects.all()
-    form = InstagramForm(request.POST)
+def register(request):
     if request.method == 'POST':
-        form = InstagramForm(request.POST)
+        form = UserRegisterForm(request.POST)
         if form.is_valid():
-            name = form.cleaned_data['your_name']
-            email = form.cleaned_data['email']
+            form.save()
+            username = form.cleaned_data.get('username')
+        return redirect('login')
 
-            recipient = Instagram(name = name,email =email)
-            recipient.save()
-            send_welcome_email(name,email)
+    else:
+       form = UserRegisterForm()
+    return render(request, 'registration/registration_form.html', {'form':form})
 
-            HttpResponseRedirect('image')
-            #.................
-    return render(request, 'instas/image.html', {'letterForm':form,"images":images})
+
+
+
+def image(request):
+    
+    return render(request, 'instas/base.html')
 
 def search_results(request):
     if 'image' in request.GET and request.GET["image"]:
@@ -38,3 +37,12 @@ def search_results(request):
         message = "Nothing has been searched"
         return render(request, 'instas/search.html',{"message":message})
         pass
+
+@login_required
+def index(request):
+    images = Image.objects.all()
+    context={
+        'images':images
+    }
+    return render(request,'instas/index.html',context)
+

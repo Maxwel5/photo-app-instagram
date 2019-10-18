@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-
+from django.contrib.auth.models import User
 # Create your models here.
 class Profile(models.Model):
     photo = models.ImageField(blank=True)
@@ -22,7 +22,7 @@ class Profile(models.Model):
         ordering = ['photo', 'bio']
 
 class Image(models.Model):
-    image_image = models.ImageField(upload_to='images/')
+    image_image = models.ImageField(upload_to='images/' , default = 'images/default.jpeg')
     name = models.CharField(max_length = 100)
     caption = models.CharField(max_length = 150)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
@@ -55,4 +55,10 @@ class Image(models.Model):
 class Instagram(models.Model):
     name = models.CharField(max_length = 20)
     email = models.EmailField()
+
+class Comments(models.Model):
+    user = models.ForeignKey(User,on_delete=models.PROTECT)
+    comments = models.TextField()
+    image = models.ForeignKey(Image,on_delete=models.PROTECT, related_name='image_comments',default=1)
+
 
