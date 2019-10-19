@@ -26,9 +26,12 @@ class Image(models.Model):
     name = models.CharField(max_length = 100)
     caption = models.CharField(max_length = 150)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    like_count = models.IntegerField(default=0)
+    like_count = models.IntegerField(User, blank=True,  default=0)
     comments = models.TextField()
     pub_date = models.DateTimeField(default=timezone.now)
+
+    def total_likes(self):
+      self.likes.count()
 
     def __str__(self):
         return self.name
