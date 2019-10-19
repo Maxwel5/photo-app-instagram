@@ -3,4 +3,13 @@
 
 {% block content %}
 {{block.super}}
+<div class="container">
+    <a class='info' href="{% url 'likePost' image.id %}">
+        {%if image.likes.id == user.id%}
+        <i class="fas fa-gratipay" style="font-size: 20px; margin-left: 15px;margin-top: 15px;"></i>
+        {%else%}
+        <i class="far fa-gratipay" style="font-size: 20px; margin-left: 15px;margin-top: 15px;"></i>
+        {%endif%}
+    </a><span style="font-size:25px;">{{image.likes.count}}</span>
+</div>
 {% endblock %}
