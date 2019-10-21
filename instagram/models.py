@@ -5,8 +5,9 @@ from django.urls import reverse
 
 # Create your models here.
 class Profile(models.Model):
-    photo = models.ImageField(blank=True)
-    bio = models.TextField()
+    photo = models.ImageField(upload_to='images/' , default = 'images/default.jpeg')
+    bio = models.TextField(blank=True)
+    user = models.OneToOneField(User,unique = True,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.bio
