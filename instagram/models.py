@@ -1,13 +1,10 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-from django.urls import reverse
-
 # Create your models here.
 class Profile(models.Model):
-    photo = models.ImageField(upload_to='images/' , default = 'images/default.jpeg')
-    bio = models.TextField(blank=True)
-    user = models.OneToOneField(User,unique = True,on_delete=models.CASCADE)
+    photo = models.ImageField(blank=True)
+    bio = models.CharField(max_length =120)
 
     def __str__(self):
         return self.bio
@@ -22,19 +19,16 @@ class Profile(models.Model):
         self.delete()
 
     class Meta:
-        ordering = ['photo', 'bio']
+        ordering = ['photo']
 
 class Image(models.Model):
     image_image = models.ImageField(upload_to='images/' , default = 'images/default.jpeg')
     name = models.CharField(max_length = 100)
     caption = models.CharField(max_length = 150)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    like_count = models.IntegerField(User, blank=True,  default=0)
+    like_count = models.IntegerField(default=0)
     comments = models.TextField()
     pub_date = models.DateTimeField(default=timezone.now)
-
-    def total_likes(self):
-      self.likes.count()
 
     def __str__(self):
         return self.name

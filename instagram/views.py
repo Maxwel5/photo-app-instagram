@@ -4,9 +4,8 @@ from .models import Image, Profile,Instagram
 from .forms import UserRegisterForm
 from .email import send_welcome_email
 from django.contrib.auth.decorators import login_required
-
-
 # Create your views here.
+
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
@@ -22,9 +21,13 @@ def register(request):
 
 
 
-def home (request):
+def image(request):
+    image = image()
+    image.name = 'Food'
+    image.profile = 'mash.jpeg'
+    image.like_count = 12
     
-    return render(request, 'instas/base.html')
+    return render(request, 'instas/image.html', {'image':image})
 
 def search_results(request):
     if 'image' in request.GET and request.GET["image"]:
@@ -46,17 +49,4 @@ def index(request):
         'images':images
     }
     return render(request,'instas/index.html',context)
-
-@login_required(login_url='/login/')
-def likePost(request,image_id):
-  image = Post.objects.get(pk = image_id)
-  is_liked = False
-  if image.likes.filter(id = request.user.id).exists():
-      image.likes.remove(request.user)
-      is_liked = False
-  else:
-      image.likes.add(request.user)
-      is_liked = True
-  return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-
 
