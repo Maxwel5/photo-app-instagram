@@ -4,8 +4,9 @@ from .models import Image, Profile,Instagram
 from .forms import UserRegisterForm
 from .email import send_welcome_email
 from django.contrib.auth.decorators import login_required
-# Create your views here.
 
+
+# Create your views here.
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
@@ -21,7 +22,7 @@ def register(request):
 
 
 
-def image(request):
+def home (request):
     
     return render(request, 'instas/base.html')
 
