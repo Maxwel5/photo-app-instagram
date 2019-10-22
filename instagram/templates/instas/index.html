@@ -2,21 +2,29 @@
 
 
 {% block content %}
-<div class='jumbotron'>
+<div class='container'>
     <div class="column">
-    <div class="image_content">
-    {% for image in images %}
-    <div class="col-md-8">
-        <img src="{{image.image_image.url}}" class="img-responsive" alt="Image"> <br><br>
-    </div>
-    <div class="image_name"><a href="image.html">{{image.name}}</a>
-    </div>
-    <div class="img_prof">
-        <p>{{image.profile}}</p>
-    </div>
-    <div class="img_lik">{{image.like_count}}</div>
-    {% endfor %}
-    </div>
+        <div class="image_content">
+            {% for image in images %}
+            <div class="jumbotron">
+                <div class="">
+                    <img src="{{image.image_image.url}}" class="img-responsive" alt="Image"> <br><br>
+                </div>
+                <div class="image_name">
+                    <h3><a href="image.html">{{image.name}}</a></h3>
+                </div>
+                <div class="img_prof">
+                    <p>{{image.profile}}</p>
+                </div>
+                <div class="img_lik">
+                    <h4><a class='info' href="{% url 'image-likes' image.id %}">
+                            <i class="fa fa-thumbs-up" aria-hidden="true"
+                                style="font-size: 20px; margin-left: 15px;margin-top: 15px"></i>
+                        </a><span style="font-size:25px;">{{image.likes.count}}</span></h4>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 </div>
 

@@ -2,6 +2,8 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 # Create your models here.
+
+
 class Profile(models.Model):
     photo = models.ImageField(blank=True)
     bio = models.CharField(max_length =120)
@@ -26,9 +28,12 @@ class Image(models.Model):
     name = models.CharField(max_length = 100)
     caption = models.CharField(max_length = 150)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    like_count = models.IntegerField(default=0)
+    like = models.ManyToManyField(User, related_name= 'likes', blank = True)
     comments = models.TextField()
     pub_date = models.DateTimeField(default=timezone.now)
+
+    def total_likes(self):
+        self.likes.count()
 
     def __str__(self):
         return self.name

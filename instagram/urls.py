@@ -8,6 +8,7 @@ urlpatterns = [
     path('',views.image, name = 'image'),
     path('search/', views.search_results, name='search_results'),
     path('allImages/',views.index,name ='display-images'),
+    path('image/<int:pk>/like/',views.likePost, name = 'image-likes'),
     
 ]
 
