@@ -5,11 +5,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('',views.image, name = 'image'),
+    path('',views.index, name = 'index'),
     path('search/', views.search_results, name='search_results'),
-    path('allImages/',views.index,name ='display-images'),
-    path('image/<int:pk>/like/',views.likePost, name = 'image-likes'),
-    
+    path('like/(?P<image_id>[0-9]+)$',views.likePost, name='likePost'),
 ]
 
 if settings.DEBUG:

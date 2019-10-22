@@ -28,7 +28,7 @@ class Image(models.Model):
     name = models.CharField(max_length = 100)
     caption = models.CharField(max_length = 150)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    like = models.ManyToManyField(User, related_name= 'likes', blank = True)
+    likes = models.ManyToManyField(User, related_name= 'likes', blank = True)
     comments = models.TextField()
     pub_date = models.DateTimeField(default=timezone.now)
 

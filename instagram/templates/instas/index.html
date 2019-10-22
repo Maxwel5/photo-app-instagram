@@ -1,7 +1,9 @@
 {% extends 'instas/base.html' %}
-
-
+{% load bootstrap4 %}
 {% block content %}
+{{block.super}}
+
+
 <div class='container'>
     <div class="column">
         <div class="image_content">
@@ -16,12 +18,12 @@
                 <div class="img_prof">
                     <p>{{image.profile}}</p>
                 </div>
-                <div class="img_lik">
-                    <h4><a class='info' href="{% url 'image-likes' image.id %}">
-                            <i class="fa fa-thumbs-up" aria-hidden="true"
-                                style="font-size: 20px; margin-left: 15px;margin-top: 15px"></i>
-                        </a><span style="font-size:25px;">{{image.likes.count}}</span></h4>
-                </div>
+          
+                <div class="iconic ml-2">
+                        <a class='info' href="{% url 'likePost' image.id %}">
+                          <i style="font-size: 20px; margin-left: 15px;margin-top: 15px;"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSzuhHODOk-BSgZz20rMggG8oxopF12ElXKVKhlIvEATP7IiSs2" height="20px" width="20px"></i>
+                        </a><span style="font-size:25px;">{{image.likes.count}}</span>
+                      </div>
             </div>
             {% endfor %}
         </div>
