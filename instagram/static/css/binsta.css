@@ -5,3 +5,7 @@ h1{
 #navbar{
     position: sticky;
 }
+
+.comment {
+    margin: 20px 0px 20px 20px;
+}

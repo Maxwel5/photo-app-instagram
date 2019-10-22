@@ -1,11 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from django.http  import HttpResponse,HttpResponseRedirect
 from .models import Image, Profile,Instagram
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm,CommentForm
 from .email import send_welcome_email
 from django.contrib.auth.decorators import login_required
-# Create your views here.
 
+# Create your views here.
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
@@ -22,14 +22,6 @@ def register(request):
 
 
 def image(request):
-
-    # image.name = 'Food'
-    # image.profile = 'mash.jpeg'
-    # image.like_count = 12
-
-    # images={
-    #     'image.name':name,'image.profile':profile,'image.like_count':like_count
-    # }
     
     return render(request, 'instas/image.html')
 
@@ -49,8 +41,18 @@ def search_results(request):
 @login_required
 def index(request):
     images = Image.objects.all()
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            # comment.image = post
+            comment.save()
+            return redirect('index')
+    else:
+        form = CommentForm()
     context={
-        'images':images
+        'images':images,
+        'form': form
     }
     return render(request,'instas/index.html',context)
 
@@ -67,5 +69,20 @@ def likePost(request,image_id):
             is_liked = True
 
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+@login_required(login_url='/register/')
+def add_comment_to_post(request, pk):
+    # post = get_object_or_404(Post, pk=pk)
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            # comment.image = post
+            comment.save()
+            return redirect('index')
+    else:
+        form = CommentForm()
+    return render(request, 'instas/post_detail.html', {'form': form})
+
 
 

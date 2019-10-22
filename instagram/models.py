@@ -66,4 +66,14 @@ class Comments(models.Model):
     comments = models.TextField()
     image = models.ForeignKey(Image,on_delete=models.PROTECT, related_name='image_comments',default=1)
 
+    def __str__(self):
+        return self.comments
+
+    def save_comments(self):
+        self.save()
+
+    def delete_comments(self):
+        self.delete()
+
+
 

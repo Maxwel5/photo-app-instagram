@@ -5,28 +5,67 @@
 
 
 <div class='container'>
-    <div class="column">
-        <div class="image_content">
-            {% for image in images %}
-            <div class="jumbotron">
-                <div class="">
-                    <img src="{{image.image_image.url}}" class="img-responsive" alt="Image"> <br><br>
-                </div>
-                <div class="image_name">
-                    <h3><a href="image.html">{{image.name}}</a></h3>
-                </div>
-                <div class="img_prof">
-                    <p>{{image.profile}}</p>
-                </div>
-          
-                <div class="iconic ml-2">
+    <div class="image_content">
+        {% for image in images %}
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="">
+                        <img src="{{image.image_image.url}}" class="img-responsive" alt="Image"> <br><br>
+                    </div>
+                    <div class="image_name">
+                        <h3><a href="image.html">{{image.name}}</a></h3>
+                    </div>
+                    <div class="img_prof">
+                        <p>{{image.profile}}</p>
+                    </div>
+
+                    <div class="iconic ml-2">
                         <a class='info' href="{% url 'likePost' image.id %}">
-                          <i style="font-size: 20px; margin-left: 15px;margin-top: 15px;"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSzuhHODOk-BSgZz20rMggG8oxopF12ElXKVKhlIvEATP7IiSs2" height="20px" width="20px"></i>
+                            <i style="font-size: 20px; margin-left: 15px;margin-top: 15px;"><img
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSzuhHODOk-BSgZz20rMggG8oxopF12ElXKVKhlIvEATP7IiSs2"
+                                    height="20px" width="20px"></i>
                         </a><span style="font-size:25px;">{{image.likes.count}}</span>
-                      </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="container">
+                        <h1>New comment</h1>
+
+                        {% for comment in image.comments.all %}
+                        <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
+                        <div class="comment">
+                            <div class="image">{{ comment.image }}</div>
+                            <strong>{{ comment.user }}</strong>
+                            <p>{{ comment.comments|linebreaks }}</p>
+                        </div>
+                        {% empty %}
+                        <p>No comments here yet :(</p>
+                        {% endfor %}
+
+                        {% for post in posts %}
+                        <div class="post">
+                            <div class="image">
+                                {{ image }}
+                            </div>
+                            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ image.name }}</a></h1>
+                            <p>{{ image.name|linebreaksbr }}</p>
+                            <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.comments.count }}</a>
+                        </div>
+                        {% endfor %}
+
+                        <div class="col-md-4">
+                            <form method="POST" class="post-form">
+                                {% csrf_token %}
+                                {{ form }}
+                                <button type="submit" class="save btn btn-default">Send</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-            {% endfor %}
         </div>
+        {% endfor %}
     </div>
 </div>
 

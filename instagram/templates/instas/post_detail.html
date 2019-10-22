@@ -1,0 +1,40 @@
+{%extends 'instas/base.html'%}
+{% load bootstrap4 %}
+
+{% block content %}
+{{block.super}}
+
+<div class="container">
+    <h1>New comment</h1>
+
+    {% for comment in image.comments.all %}
+    <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
+    <div class="comment">
+        <div class="image">{{ comment.image }}</div>
+        <strong>{{ comment.user }}</strong>
+        <p>{{ comment.comments|linebreaks }}</p>
+    </div>
+    {% empty %}
+    <p>No comments here yet :(</p>
+    {% endfor %}
+
+    {% for post in posts %}
+        <div class="post">
+            <div class="image">
+                {{ image }}
+            </div>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ image.name }}</a></h1>
+            <p>{{ image.name|linebreaksbr }}</p>
+            <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.comments.count }}</a>
+        </div>
+    {% endfor %}
+
+    <div class="col-md-4">
+        <form method="POST" class="post-form">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit" class="save btn btn-default">Send</button>
+        </form>
+    </div>
+</div>
+    {% endblock %}
