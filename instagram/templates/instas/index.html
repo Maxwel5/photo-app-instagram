@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="">
-                        <img src="{{image.image_image.url}}" class="img-responsive" alt="Image"> <br><br>
+                        <img src="{{image.image_image.url}}" class="img-responsive" alt="Image"><br><br>
                     </div>
                     <div class="image_name">
                         <h3><a href="image.html">{{image.name}}</a></h3>
@@ -30,7 +30,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="container">
-                        <h1>New comment</h1>
+                        <h3>New comment</h3>
 
                         {% for comment in image.comments.all %}
                         <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
@@ -40,7 +40,7 @@
                             <p>{{ comment.comments|linebreaks }}</p>
                         </div>
                         {% empty %}
-                        <p>No comments here yet :(</p>
+                        <p>No comments here yet</p>
                         {% endfor %}
 
                         {% for post in posts %}
