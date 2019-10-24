@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import dj_database_url
+import django_heroku
 from decouple import config,Csv
 
 SECRET_KEY = config('SECRET_KEY')
