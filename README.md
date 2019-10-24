@@ -45,6 +45,7 @@ A user shoul be able to:
 ### Maxwel5
 
 ## Licence
+[MIT](LICENSE)
 
 ## Contacts
 You can reach me via:
