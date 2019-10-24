@@ -53,7 +53,7 @@ class Image(models.Model):
         Image.objects.all().delete()
 
     @classmethod
-    def search_by_name(search_term):
+    def search_by_name(cls,search_term):
         instagram = cls.objects.filter(name__icontains=search_term)
         return instagram
 
